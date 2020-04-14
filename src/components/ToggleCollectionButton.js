@@ -20,7 +20,7 @@ export default class ToggleCollectionButton extends Component {
         {this.state.isCollection ? 
           <Icon type='FontAwesome5' name='bookmark' style={this.props.iconStyle||{}}/> :
            <Icon type='FontAwesome' name='bookmark' fontSize={27} style={this.props.iconStyle||{}} />}
-        {this.props.text && <Text>收藏</Text>}
+        {this.props.text && <Text note>收藏</Text>}
       </Button>
     )
   }

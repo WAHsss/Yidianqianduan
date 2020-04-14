@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body, H3 } from 'native-base';
+import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body, H3 } from 'native-base';
 import { StyleSheet, View, TouchableHighlight } from 'react-native';
 import ToggleCollectionButton from './ToggleCollectionButton';
 
@@ -35,7 +35,7 @@ class CardViewComponent extends PureComponent {
       }
     }
   }
-  
+
   render() {
     return (
       <TouchableHighlight
@@ -45,48 +45,47 @@ class CardViewComponent extends PureComponent {
           ...this.state
         })}
       >
-        <Content>
-          <Card style={{ flex: 0 }}>
-            <CardItem>
-              <Left>
-                <Thumbnail source={{ uri: 'question_logo' }} />
-                <Body>
-                  <Text>{this.state.type}</Text>
-                </Body>
-              </Left>
-              <Right>
-                <Icon type="FontAwesome5" name='angle-right' style={{ fontSize: 20, color: 'blue' }} />
-              </Right>
-            </CardItem>
-            <View style={styles.separator} />
-            <CardItem>
+        <Card style={{ flex: 0 }}>
+          <CardItem>
+            <Left>
+              <Thumbnail source={{ uri: 'question_logo' }} />
               <Body>
-                <H3 style={styles.title}>
-                  {this.state.title}
-                </H3>
-                <View style={styles.separator} />
-                <Text numberOfLines={5} style={styles.content}>
-                  {this.state.content}
-                </Text>
+                <Text>{this.state.type}</Text>
               </Body>
-            </CardItem>
-            <View style={styles.separator} />
-            <CardItem>
-              <Left>
-                <Button transparent textStyle={{ color: '#87838B' }} onPress={() => this.handleOnPress('praise')}>
-                  {this.state.isPraise ? <Icon type='AntDesign' name='heart' /> : <Icon type='FontAwesome5' name='heart' />}
-                  <Text>{this.state.praise} 赞</Text>
-                </Button>
-              </Left>
-              <Right>
-                <ToggleCollectionButton 
-                  isCollection={this.state.isCollection}
-                  text={true}
-                />
-              </Right>
-            </CardItem>
-          </Card>
-        </Content>
+            </Left>
+            <Right>
+              <Icon type="FontAwesome5" name='angle-right' style={{ fontSize: 20, color: 'gray' }} />
+            </Right>
+          </CardItem>
+          <View style={styles.separator} />
+          <CardItem>
+            <Body>
+              <H3 style={styles.title}>
+                {this.state.title}
+              </H3>
+              <View style={styles.separator} />
+              <Text numberOfLines={5} style={styles.content}>
+                {this.state.content}
+              </Text>
+            </Body>
+          </CardItem>
+          <View style={styles.separator} />
+          <CardItem>
+            <Left>
+              <Button transparent textStyle={{ color: '#87838B' }} onPress={() => this.handleOnPress('praise')}>
+                {this.state.isPraise ? <Icon type='AntDesign' name='heart' style={{color:'tomato'}}/> : <Icon type='FontAwesome5' name='heart' style={{color:'gray'}} />}
+                <Text note>{this.state.praise} 赞</Text>
+              </Button>
+            </Left>
+            <Right>
+              <ToggleCollectionButton
+                isCollection={this.state.isCollection}
+                text={true}
+                iconStyle={{color:'gray'}}
+              />
+            </Right>
+          </CardItem>
+        </Card>
       </TouchableHighlight>
     )
   }

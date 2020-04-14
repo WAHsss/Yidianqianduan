@@ -1,13 +1,13 @@
 import React from 'react';
-import { Image } from 'react-native';
-import TabNavigator from 'react-native-tab-navigator';
-
-import icons from "./assets/Icons";
-import tabStyle from './styles/tabStyle';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {Icon} from 'native-base'
 
 import Home from "./navigatiors/Home";
 import FindLayout from "./pages/FindLayout";
-import Profile from './pages/Profile';
+import Profile from './navigatiors/Profile';
+
+const Tab = createBottomTabNavigator();
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -15,49 +15,41 @@ export default class App extends React.Component {
       selectedTab: 'home',
     };
   }
-  changeSelectedTab(tabName){
+  changeSelectedTab(tabName) {
     this.setState({
       selectedTab: tabName
     })
   }
   render() {
     return (
-      <TabNavigator
-        tabBarStyle={{marginTop:20}}
-      >
-        <TabNavigator.Item
-          selected={this.state.selectedTab === 'home'}
-          title="首页"
-          titleStyle={tabStyle.titleStyle}
-          renderIcon={() => <Image source={{uri:icons.home}} style={tabStyle.iconStyle}/>}
-          renderSelectedIcon={() => <Image source={{uri:icons.homeFill}} style={tabStyle.iconStyle}/>}
-          onPress={() => this.changeSelectedTab('home')}
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName = '';
+              if (route.name === 'Home') {
+                iconName = 'home'
+              } else if (route.name === 'Find') {
+                iconName ='fire'
+              } else if (route.name === 'Profile') {
+                iconName = 'user-tie'
+              }
+              return <Icon type="FontAwesome5" name={iconName} style={{fontSize: size , color : color}} />;
+            },
+          })}
+          tabBarOptions={{
+            activeTintColor: 'black',
+            inactiveTintColor: 'gray',
+            animationEnabled: true,
+            //是否懒加载
+            lazy: true
+          }}
         >
-          <Home/>
-        </TabNavigator.Item>
-        <TabNavigator.Item
-          selected={this.state.selectedTab === 'find'}
-          title="高赞"
-          titleStyle={tabStyle.titleStyle}
-          renderIcon={() => <Image source={{uri:icons.find}} style={tabStyle.iconStyle}/>}
-          renderSelectedIcon={() => <Image source={{uri:icons.findFill}} style={tabStyle.iconStyle}/>}
-          selected={this.state.selectedTab === 'find'}
-          onPress={() => this.changeSelectedTab('find')}
-        >
-          <FindLayout/>
-        </TabNavigator.Item>
-        <TabNavigator.Item
-          selected={this.state.selectedTab === 'profile'}
-          title="个人"
-          titleStyle={tabStyle.titleStyle}
-          renderIcon={() => <Image source={{uri:icons.profile}} style={tabStyle.iconStyle}/>}
-          renderSelectedIcon={() => <Image source={{uri:icons.profileFill}} style={tabStyle.iconStyle}/>}
-          selected={this.state.selectedTab === 'profile'}
-          onPress={() => this.changeSelectedTab('profile')}
-        >
-          <Profile/>
-        </TabNavigator.Item>
-      </TabNavigator>
+          <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen name="Find" component={FindLayout} />
+          <Tab.Screen name="Profile" component={Profile} />
+        </Tab.Navigator>
+      </NavigationContainer>
     );
   }
 }

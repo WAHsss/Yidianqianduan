@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
-import {StyleSheet , FlatList } from 'react-native';
+import { StyleSheet, FlatList } from 'react-native';
 import CardViewComponent from '../components/CardViewComponent';
+import { Content } from 'native-base';
 const aaa = `## MongoDB 索引
 
 索引通常能够极大的提高查询的效率，如果没有索引，MongoDB在读取数据时必须扫描集合中的每个文件并选取那些符合查询条件的记录。
@@ -40,39 +41,39 @@ ensureIndex() 接收可选参数，可选参数列表如下：
 | language_override  | string        | 对于文本索引，该参数指定了包含在文档中的字段名，语言覆盖默认的language，默认值为 language. |
 `
 const Data = [
-    {
-      type: '前端面试题',
-      title : 'sroll resize 使用函数节流实现不要频繁触发事件的需求',
-      content:'利用定时器，让函数执行延迟500毫秒，在500毫秒内如果有函数又被调用则删除上一次调用，这次调用500毫秒后执行，其实本意只是窗口resize后页面做一些调整就可以，而window的resize事件并不是在resize结束后才触发的，具体则么个频率我也不知道，但却是在不停的调用，直到窗口大小不再变化。其实类似的机制还有鼠标的mousemove，都是在短时间内重复触发。',
-      praise: 123,
-      isPraise: true,
-      isCollection: true
-    },
-    {
-      type: '技术博客',
-      title : 'sroll resize 使用函数节流实现不要频繁触发事件的需求',
-      content:aaa,
-      praise: 123,
-      isPraise: true,
-      isCollection: true
-    },
-    {
-      type : '高赞问答',
-      title : 'sroll resize 使用函数节流实现不要频繁触发事件的需求',
-      content:'利用定时器，让函数执行延迟500毫秒，在500毫秒内如果有函数又被调用则删除上一次调用，这次调用500毫秒后执行，其实本意只是窗口resize后页面做一些调整就可以，而window的resize事件并不是在resize结束后才触发的，具体则么个频率我也不知道，但却是在不停的调用，直到窗口大小不再变化。其实类似的机制还有鼠标的mousemove，都是在短时间内重复触发。',
-      praise: 123,
-      isPraise: true,
-      isCollection: true
-    },
-    {
-      type : '开发技巧',
-      title : 'sroll resize 使用函数节流实现不要频繁触发事件的需求',
-      content:'利用定时器，让函数执行延迟500毫秒，在500毫秒内如果有函数又被调用则删除上一次调用，这次调用500毫秒后执行，其实本意只是窗口resize后页面做一些调整就可以，而window的resize事件并不是在resize结束后才触发的，具体则么个频率我也不知道，但却是在不停的调用，直到窗口大小不再变化。其实类似的机制还有鼠标的mousemove，都是在短时间内重复触发。',
-      praise: 123,
-      isPraise: true,
-      isCollection: true
-    }
-  ];
+  {
+    type: '前端面试题',
+    title: 'sroll resize 使用函数节流实现不要频繁触发事件的需求',
+    content: '利用定时器，让函数执行延迟500毫秒，在500毫秒内如果有函数又被调用则删除上一次调用，这次调用500毫秒后执行，其实本意只是窗口resize后页面做一些调整就可以，而window的resize事件并不是在resize结束后才触发的，具体则么个频率我也不知道，但却是在不停的调用，直到窗口大小不再变化。其实类似的机制还有鼠标的mousemove，都是在短时间内重复触发。',
+    praise: 123,
+    isPraise: true,
+    isCollection: true
+  },
+  {
+    type: '技术博客',
+    title: 'sroll resize 使用函数节流实现不要频繁触发事件的需求',
+    content: aaa,
+    praise: 123,
+    isPraise: true,
+    isCollection: true
+  },
+  {
+    type: '高赞问答',
+    title: 'sroll resize 使用函数节流实现不要频繁触发事件的需求',
+    content: '利用定时器，让函数执行延迟500毫秒，在500毫秒内如果有函数又被调用则删除上一次调用，这次调用500毫秒后执行，其实本意只是窗口resize后页面做一些调整就可以，而window的resize事件并不是在resize结束后才触发的，具体则么个频率我也不知道，但却是在不停的调用，直到窗口大小不再变化。其实类似的机制还有鼠标的mousemove，都是在短时间内重复触发。',
+    praise: 123,
+    isPraise: true,
+    isCollection: true
+  },
+  {
+    type: '开发技巧',
+    title: 'sroll resize 使用函数节流实现不要频繁触发事件的需求',
+    content: '利用定时器，让函数执行延迟500毫秒，在500毫秒内如果有函数又被调用则删除上一次调用，这次调用500毫秒后执行，其实本意只是窗口resize后页面做一些调整就可以，而window的resize事件并不是在resize结束后才触发的，具体则么个频率我也不知道，但却是在不停的调用，直到窗口大小不再变化。其实类似的机制还有鼠标的mousemove，都是在短时间内重复触发。',
+    praise: 123,
+    isPraise: true,
+    isCollection: true
+  }
+];
 class HomePage extends PureComponent {
   constructor(props) {
     super(props);
@@ -83,11 +84,13 @@ class HomePage extends PureComponent {
   render() {
 
     return (
-      <FlatList
+      <Content>
+        <FlatList
           data={Data}
           keyExtractor={(item, index) => item + index}
-          renderItem={({ item }) => <CardViewComponent item={item} navigation={this.props.navigation}/>}
+          renderItem={({ item }) => <CardViewComponent item={item} navigation={this.props.navigation} />}
         />
+      </Content>
     )
   }
 }

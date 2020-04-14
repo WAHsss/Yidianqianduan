@@ -1,26 +1,30 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import { Container, Tab, Tabs, ScrollableTab } from 'native-base';
+import { Container, Tab, Tabs} from 'native-base';
 import RankingList from '../components/RankingList';
 let data = [
   {
     header: "面试题",
     title: '面试题',
+    introduction:'我是谁你是谁，在哪吗的发的开发加咖啡',
     praise: 123
   },
   {
     header: "技术文章",
     title: '技术文章',
+    introduction:'我是谁你是谁，在哪吗的发的开发加咖啡',
     praise: 123
   },
   {
     header: '问答',
-    title: '技术文章',
+    title: '精彩问答',
+    introduction:'我是谁你是谁，在哪吗的发的开发加咖啡',
     praise: 123
   },
   {
     header: '开发技巧',
-    title: '技术文章',
+    introduction:'我是谁你是谁，在哪吗的发的开发加咖啡',
+    title: '开发技巧',
     praise: 123
   }
 ]
