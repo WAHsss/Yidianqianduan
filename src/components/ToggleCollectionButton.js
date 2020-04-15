@@ -17,7 +17,7 @@ export default class ToggleCollectionButton extends Component {
   render() {
     return (
       <Button transparent textStyle={{ color:'#87838B'}} onPress={this.handleOnPress}>
-        {this.state.isCollection ? 
+        {!this.state.isCollection ? 
           <Icon type='FontAwesome5' name='bookmark' style={this.props.iconStyle||{}}/> :
            <Icon type='FontAwesome' name='bookmark' fontSize={27} style={this.props.iconStyle||{}} />}
         {this.props.text && <Text note>收藏</Text>}

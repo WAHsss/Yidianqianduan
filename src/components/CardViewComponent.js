@@ -35,20 +35,28 @@ class CardViewComponent extends PureComponent {
       }
     }
   }
+  chooseImg=()=>{
+    switch (this.state.type) {
+      case '前端面试题':  return 'question';
+      case '技术文章' : return 'article';
+      case '问答' : return 'qa';
+      case '开发技巧' : return 'skill';
+    }
 
+  }
   render() {
     return (
       <TouchableHighlight
         activeOpacity={0.6}
         underlayColor="#00000"
-        onPress={() => this.props.navigation.navigate('Detail', {
+        onPress={() => this.props.navigation.navigate('DetailPage', {
           ...this.state
         })}
       >
         <Card style={{ flex: 0 }}>
           <CardItem>
             <Left>
-              <Thumbnail source={{ uri: 'question_logo' }} />
+              <Thumbnail source={{ uri: this.chooseImg() }} />
               <Body>
                 <Text>{this.state.type}</Text>
               </Body>

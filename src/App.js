@@ -3,9 +3,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Icon} from 'native-base'
 
-import Home from "./navigatiors/Home";
-import FindLayout from "./pages/FindLayout";
-import Profile from './navigatiors/Profile';
+import Home from "./navigators/Home";
+import PraisePage from "./pages/PraisePage";
+import Profile from './navigators/Profile';
 
 const Tab = createBottomTabNavigator();
 export default class App extends React.Component {
@@ -29,7 +29,7 @@ export default class App extends React.Component {
               let iconName = '';
               if (route.name === 'Home') {
                 iconName = 'home'
-              } else if (route.name === 'Find') {
+              } else if (route.name === 'PraisePage') {
                 iconName ='fire'
               } else if (route.name === 'Profile') {
                 iconName = 'user-tie'
@@ -45,9 +45,9 @@ export default class App extends React.Component {
             lazy: true
           }}
         >
-          <Tab.Screen name="Home" component={Home} />
-          <Tab.Screen name="Find" component={FindLayout} />
-          <Tab.Screen name="Profile" component={Profile} />
+          <Tab.Screen name="Home" component={Home} options={{title:'首页'}}/>
+          <Tab.Screen name="PraisePage" component={PraisePage} options={{title:'高赞'}}/>
+          <Tab.Screen name="Profile" component={Profile} options={{title:'个人'}}/>
         </Tab.Navigator>
       </NavigationContainer>
     );

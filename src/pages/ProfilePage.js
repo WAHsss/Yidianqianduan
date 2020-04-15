@@ -35,13 +35,25 @@ export default class ProfilePage extends React.Component {
     this.navigation = this.props.navigation;
   }
   handleCollectionOnPress(item) {
-    this.navigation.navigate('CardList', {
+    this.navigation.navigate('CardListPage', {
       ...item
     })
   }
   handleAddNoteOnPress() {
-    this.navigation.navigate('NoteEditor',{
+    this.navigation.navigate('NotePage',{
       title:'小记'
+    })
+  }
+  componentDidMount(){
+    this.navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity
+          onPress={() => this.navigation.navigate('SigninPage')}
+          style={{ marginRight: 20 }}
+        >
+          <Text>登录</Text>
+        </TouchableOpacity>
+      ),
     })
   }
   render() {

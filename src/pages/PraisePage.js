@@ -28,7 +28,7 @@ let data = [
     praise: 123
   }
 ]
-export default class FindLayout extends React.Component {
+export default class PraisePage extends React.Component {
 
   render() {
     return (
